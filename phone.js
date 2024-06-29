@@ -15,8 +15,17 @@ const displayPhones = (phones) => {
   // In this container cards are gonna added
   const phoneContainer = document.getElementById("phone-container");
   // Clear previous searchData
-  phoneContainer.textContent = ''
+  phoneContainer.textContent = "";
   // console.log(phones);
+  const showAllContainer = document.getElementById("show-all-btn");
+  //  Adding functionality to the button for hiding the button
+  if (phones.length > 12) {
+    showAllContainer.classList.remove("hidden");
+  } else {
+    showAllContainer.classList.add("hidden");
+  }
+  // display only 12 phones
+  phones = phones.slice(0, 12);
   phones.forEach((phone) => {
     console.log(phone);
     // Creating a div named phonecard
@@ -37,16 +46,27 @@ const displayPhones = (phones) => {
         `;
     phoneContainer.appendChild(phoneCard);
   });
+  toggleLoadingInfinity(false);
 };
 
 // Handle search
 
 const handleSearch = () => {
   // console.log("search button clicked");
+  toggleLoadingInfinity(true);
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
-  console.log(searchText);
+  // console.log(searchText);
   loadPhone(searchText);
+};
+
+const toggleLoadingInfinity = (isLoading) => {
+  const loadingInfinity = document.getElementById("loading-infinity");
+  if (isLoading) {
+    loadingInfinity.classList.remove("hidden");
+  } else {
+    loadingInfinity.classList.add("hidden");
+  }
 };
 
 // loadPhone();
