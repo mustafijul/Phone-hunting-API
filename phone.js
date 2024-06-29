@@ -25,7 +25,7 @@ const displayPhones = (phones) => {
     showAllContainer.classList.add("hidden");
   }
   // display only 12 phones
-  phones = phones.slice(0, 12);
+  // phones = phones.slice(0, 12);
   phones.forEach((phone) => {
     console.log(phone);
     // Creating a div named phonecard
